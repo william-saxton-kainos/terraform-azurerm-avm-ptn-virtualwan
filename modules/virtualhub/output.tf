@@ -31,13 +31,3 @@ output "resource_object" {
     }
   }
 }
-
-output "resource_ids" {
-  description = "Virtual Hub IDs"
-  value       = { for key, hub in azurerm_virtual_hub.virtual_hub : key => hub.id }
-}
-
-output "resource_names" {
-  description = "Virtual Hub Names"
-  value       = { for key, hub in azurerm_virtual_hub.virtual_hub : key => hub.name }
-}

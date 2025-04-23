@@ -56,7 +56,6 @@ module "vwan_with_vhub" {
       name               = local.firewall_name
       virtual_hub_key    = local.virtual_hub_key
       firewall_policy_id = azurerm_firewall_policy.this.id
-      zones              = [1, 2]
     }
   }
   routing_intents = {
@@ -75,23 +74,6 @@ module "vwan_with_vhub" {
 output "firewall_private_ip_address" {
   description = "Private IP Address of the Azure Firewall by Hub"
   value       = module.vwan_with_vhub.firewall_ip_addresses
-}
-
-output "test" {
-  value = {
-    resource_id                             = module.vwan_with_vhub.resource_id
-    name                                    = module.vwan_with_vhub.name
-    firewall_resource_ids                   = module.vwan_with_vhub.firewall_resource_ids
-    firewall_resource_names                 = module.vwan_with_vhub.firewall_resource_names
-    firewall_private_ip_address             = module.vwan_with_vhub.firewall_private_ip_address
-    firewall_public_ip_addresses            = module.vwan_with_vhub.firewall_public_ip_addresses
-    firewall_resource_ids_by_hub_key        = module.vwan_with_vhub.firewall_resource_ids_by_hub_key
-    firewall_resource_names_by_hub_key      = module.vwan_with_vhub.firewall_resource_names_by_hub_key
-    firewall_private_ip_address_by_hub_key  = module.vwan_with_vhub.firewall_private_ip_address_by_hub_key
-    firewall_public_ip_addresses_by_hub_key = module.vwan_with_vhub.firewall_public_ip_addresses_by_hub_key
-    virtual_hub_resource_ids                = module.vwan_with_vhub.virtual_hub_resource_ids
-    virtual_hub_resource_names              = module.vwan_with_vhub.virtual_hub_resource_names
-  }
 }
 ```
 
@@ -129,10 +111,6 @@ The following outputs are exported:
 ### <a name="output_firewall_private_ip_address"></a> [firewall\_private\_ip\_address](#output\_firewall\_private\_ip\_address)
 
 Description: Private IP Address of the Azure Firewall by Hub
-
-### <a name="output_test"></a> [test](#output\_test)
-
-Description: n/a
 
 ## Modules
 

@@ -8,7 +8,7 @@ module "vpn_gateway" {
       location                              = module.virtual_hubs.resource_object[value.virtual_hub_key].location
       virtual_hub_id                        = module.virtual_hubs.resource_object[value.virtual_hub_key].id
       bgp_route_translation_for_nat_enabled = value.bgp_route_translation_for_nat_enabled
-      scale_unit                            = value.scale_unit
+      scale_units                           = value.scale_unit
       routing_preference                    = value.routing_preference
       bgp_settings                          = value.bgp_settings
     }
@@ -69,12 +69,7 @@ module "vpn_site_connection" {
           shared_key                            = try(link.shared_key, null)
           local_azure_ip_address_enabled        = try(link.local_azure_ip_address_enabled, null)
           policy_based_traffic_selector_enabled = try(link.policy_based_traffic_selector_enabled, null)
-          custom_bgp_addresses = try(link.custom_bgp_addresses, null) == null ? [] : [
-            for custom_bgp_address in link.custom_bgp_addresses : {
-              ip_address          = custom_bgp_address.ip_address
-              ip_configuration_id = module.vpn_gateway.ip_configuration_ids[conn.vpn_gateway_key][custom_bgp_address.instance]
-            }
-          ]
+          custom_bgp_address                    = try(link.custom_bgp_address, null)
         }
       ]
       routing                 = try(conn.routing, null)

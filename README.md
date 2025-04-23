@@ -320,7 +320,7 @@ Description:   Specifies the Office 365 local breakout category. Possible values
   - `Optimize`
   - `OptimizeAndAllow`
   - `All`
-  - `None`
+  - `None`  
 
   Defaults to `None`.
 
@@ -462,7 +462,7 @@ Default: `null`
 Description:   Type of the Virtual WAN to create. Possible values include:
 
   - `Basic`
-  - `Standard`
+  - `Standard`  
 
   Defaults to `Standard` and is recommended.
 
@@ -636,9 +636,9 @@ Description:   Map of objects for VPN Site connections to connect VPN Sites to t
     - `shared_key`: Optional shared key for the VPN link.
     - `local_azure_ip_address_enabled`: Optional boolean to enable local Azure IP address for the VPN link.
     - `policy_based_traffic_selector_enabled`: Optional boolean to enable policy based traffic selector for the VPN link.
-    - `custom_bgp_addresses`: Optional list of custom BGP addresses for the VPN link, which includes:
+    - `custom_bgp_address`: Optional list of custom BGP addresses for the VPN link, which includes:
       - `ip_address`: IP address for the custom BGP address.
-      - `instance`: Instance number for the custom BGP address. Must be `0` or `1`.
+      - `ip_configuration_id`: IP configuration ID for the custom BGP address.
   - `internet_security_enabled`: Optional boolean to enable internet security for the connection, e.g. allow `0.0.0.0/0` route to be propagated to this connection to a branch/VPN site.
   - `routing`: Optional routing configuration object for the connection, which includes:
     - `associated_route_table`: The resource ID of the Virtual Hub Route Table you wish to associate with this connection.
@@ -687,9 +687,9 @@ map(object({
       shared_key                            = optional(string)
       local_azure_ip_address_enabled        = optional(bool)
       policy_based_traffic_selector_enabled = optional(bool)
-      custom_bgp_addresses = optional(list(object({
-        ip_address = string
-        instance   = number
+      custom_bgp_address = optional(list(object({
+        ip_address          = string
+        ip_configuration_id = string
       })))
     }))
     internet_security_enabled = optional(bool)
@@ -783,42 +783,6 @@ The following outputs are exported:
 
 Description: Azure Firewall IP addresses.
 
-### <a name="output_firewall_private_ip_address"></a> [firewall\_private\_ip\_address](#output\_firewall\_private\_ip\_address)
-
-Description: A map of Azure Firewall private IP address with the map keys of the `firewalls` variable.
-
-### <a name="output_firewall_private_ip_address_by_hub_key"></a> [firewall\_private\_ip\_address\_by\_hub\_key](#output\_firewall\_private\_ip\_address\_by\_hub\_key)
-
-Description: A map of Azure Firewall private IP address with the map keys of the `firewalls` variable.
-
-### <a name="output_firewall_public_ip_addresses"></a> [firewall\_public\_ip\_addresses](#output\_firewall\_public\_ip\_addresses)
-
-Description: A map of Azure Firewall public IP addresses with the map keys of the `firewalls` variable.
-
-### <a name="output_firewall_public_ip_addresses_by_hub_key"></a> [firewall\_public\_ip\_addresses\_by\_hub\_key](#output\_firewall\_public\_ip\_addresses\_by\_hub\_key)
-
-Description: A map of Azure Firewall public IP addresses with the map keys of the `firewalls` variable.
-
-### <a name="output_firewall_resource_ids"></a> [firewall\_resource\_ids](#output\_firewall\_resource\_ids)
-
-Description: A map of Azure Firewall resource IDs with the map keys of the `firewalls` variable.
-
-### <a name="output_firewall_resource_ids_by_hub_key"></a> [firewall\_resource\_ids\_by\_hub\_key](#output\_firewall\_resource\_ids\_by\_hub\_key)
-
-Description: A map of Azure Firewall resource IDs with the map keys of the `firewalls` variable.
-
-### <a name="output_firewall_resource_names"></a> [firewall\_resource\_names](#output\_firewall\_resource\_names)
-
-Description: A map of Azure Firewall resource names with the map keys of the `firewalls` variable.
-
-### <a name="output_firewall_resource_names_by_hub_key"></a> [firewall\_resource\_names\_by\_hub\_key](#output\_firewall\_resource\_names\_by\_hub\_key)
-
-Description: A map of Azure Firewall resource names with the map keys of the `firewalls` variable.
-
-### <a name="output_name"></a> [name](#output\_name)
-
-Description: Virtual WAN Name
-
 ### <a name="output_p2s_vpn_gw_id"></a> [p2s\_vpn\_gw\_id](#output\_p2s\_vpn\_gw\_id)
 
 Description: P2S VPN Gateway ID
@@ -850,14 +814,6 @@ Description: S2S VPN Gateway Objects
 ### <a name="output_s2s_vpn_gw_id"></a> [s2s\_vpn\_gw\_id](#output\_s2s\_vpn\_gw\_id)
 
 Description: S2S VPN Gateway ID
-
-### <a name="output_virtual_hub_resource_ids"></a> [virtual\_hub\_resource\_ids](#output\_virtual\_hub\_resource\_ids)
-
-Description: A map of Azure Virtual Hub resource IDs with the map keys of the `virtual_hubs` variable.
-
-### <a name="output_virtual_hub_resource_names"></a> [virtual\_hub\_resource\_names](#output\_virtual\_hub\_resource\_names)
-
-Description: A map of Azure Virtual Hub resource names with the map keys of the `virtual_hubs` variable.
 
 ### <a name="output_virtual_wan_id"></a> [virtual\_wan\_id](#output\_virtual\_wan\_id)
 
