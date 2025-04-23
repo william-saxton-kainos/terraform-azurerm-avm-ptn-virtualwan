@@ -17,6 +17,7 @@ locals {
       virtual_hub_key               = gw.virtual_hub_key
       scale_units                   = gw.scale_units
       allow_non_virtual_wan_traffic = gw.allow_non_virtual_wan_traffic
+      tags                          = try(gw.tags, null)
     }
   } : null
   p2s_gateway_vpn_server_configurations = var.p2s_gateway_vpn_server_configurations != null ? {
